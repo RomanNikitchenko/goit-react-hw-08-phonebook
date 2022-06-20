@@ -1,10 +1,10 @@
 import { useFetchContactsQuery } from 'redux/phonebook/contactSlice';
 
-import ContactList from './contactList/contactList';
-import ContactForm from './form/contactForm';
-import Filter from './filter/filter';
+import ContactList from 'components/contactList/contactList';
+import ContactForm from 'components/form/contactForm';
+import Filter from 'components/filter/filter';
 
-const App = () => {
+const Phonebook = () => {
   const { data } = useFetchContactsQuery();
 
   return (
@@ -18,4 +18,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Phonebook;
