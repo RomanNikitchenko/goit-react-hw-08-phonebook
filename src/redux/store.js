@@ -11,7 +11,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import phonebookReducer from 'redux/phonebook/phonebook-reducer';
-import { authReducer } from './auth';
+// import { authReducer } from './auth';
+import authReducer from 'redux/auth/auth-slice';
+
 
 
 const middleware = [
