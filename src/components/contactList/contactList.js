@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './contactList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import todosActions from 'redux/phonebook/phonebook-actions';
+import contactApi from 'redux/phonebook/phonebook-operations';
 
 const getNormalizedFilter = state => {
   const { items, filter } = state.phonebook;
@@ -21,15 +21,15 @@ const ContactList = () => {
 
   return (
     <ul>
-      {visibleFilter.map(({ id, name, number }) => {
+      {visibleFilter.map(({ id, name, phone }) => {
         return (
           <li key={id} className={s.item}>
             <span>
-              {name}: {number}
+              {name}: {phone}
             </span>
             <button
               type="button"
-              onClick={() => dispatch(todosActions.deleteContact(id))}
+              onClick={() => dispatch(contactApi.deleteContact(id))}
             >
               delete
             </button>

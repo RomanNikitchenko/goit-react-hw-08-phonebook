@@ -2,21 +2,24 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import actions from './phonebook-actions';
 
-const addContact = (state, payload) => {
-  const contactsName = state.map(({ name }) => name.toLowerCase());
+// const addContact = (state, payload) => {
+//   const contactsName = state.map(({ name }) => name.toLowerCase());
 
-  if (contactsName.includes(payload.name.toLowerCase())) {
-    return alert(`${payload.name} is already in contacts.`);
-  } else {
-    return [...state, payload];
-  }
-};
+//   if (contactsName.includes(payload.name.toLowerCase())) {
+//     return alert(`${payload.name} is already in contacts.`);
+//   } else {
+//     return [...state, payload];
+//   }
+// };
 
 const items = createReducer([], {
-  [actions.addContact]: (state, { payload }) => {
-    return addContact(state, payload);
+  [actions.fetchContactSuccess]: (_, { payload }) => {
+    return payload
   },
-  [actions.deleteContact]: (state, { payload }) => {
+  [actions.addContactSuccess]: (state, { payload }) => {
+    return [...state, payload];
+  },
+  [actions.deleteContactSuccess]: (state, { payload }) => {
     return state.filter(contact => contact.id !== payload);
   },
 });

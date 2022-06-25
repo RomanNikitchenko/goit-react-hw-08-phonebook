@@ -1,56 +1,34 @@
-import { nanoid } from 'nanoid';
 import { createAction } from '@reduxjs/toolkit';
 
-const addContact = createAction('phonebook/addContact', (name, number) => {
-  return {
-    payload: {
-      id: nanoid(),
-      name: name,
-      number: number,
-    },
-  };
-});
+const fetchContactRequest = createAction('phonebook/fetchContactRequest');
+const fetchContactSuccess = createAction('phonebook/fetchContactSuccess');
+const fetchContactError = createAction('phonebook/fetchContactError');
 
-const deleteContact = createAction('phonebook/deleteContact');
+const addContactRequest = createAction('phonebook/addContactRequest');
+const addContactSuccess = createAction('phonebook/addContactSuccess');
+const addContactError = createAction('phonebook/addContactError');
+
+const deleteContactRequest = createAction('phonebook/deleteContactRequest');
+const deleteContactSuccess = createAction('phonebook/deleteContactSuccess');
+const deleteContactError = createAction('phonebook/deleteContactError');
+
 
 const filterChange = createAction('phonebook/filterChange');
 
 const actions = {
-  addContact,
-  deleteContact,
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
+
   filterChange,
 };
 
 export default actions;
-
-//
-
-// import types from './phonebook-types';
-// import { nanoid } from 'nanoid';
-
-// const addContact = (name, number) => {
-//   return {
-//     type: types.ADD_CONTACT,
-//     payload: {
-//       id: nanoid(),
-//       name: name,
-//       number: number,
-//     },
-//   };
-// };
-
-// const deleteContact = Id => {
-//   return {
-//     type: types.DELETE_CONTACT,
-//     payload: Id,
-//   };
-// };
-
-// const filterChange = value => {
-//   return {
-//     type: types.FILTER_CHANGE,
-//     payload: value,
-//   };
-// };
-
-// export default { addContact, filterChange, deleteContact };
