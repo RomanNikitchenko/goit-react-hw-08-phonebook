@@ -14,7 +14,7 @@ const ContactForm = () => {
     if (contactsName.includes(name.toLowerCase())) {
       return alert(`${name} is already in contacts.`);
     } else {
-      return dispatch(contactApi.addContact(name, number));
+      return dispatch(contactApi.addContact({name, number}));
     }
   };
 
