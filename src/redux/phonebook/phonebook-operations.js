@@ -32,7 +32,7 @@ const fetchContacts = createAsyncThunk('phonebook/fetchContact', async () => {
 //     }
 // };
 
-const addContact = createAsyncThunk('phonebook/addContact', async ({name, number}) => {
+const addContact = createAsyncThunk('phonebook/addContact', async ({ name, number }) => {
     const contact = { name: name, number: number };
     const { data } = await axios.post('/contacts', contact)
     return data;

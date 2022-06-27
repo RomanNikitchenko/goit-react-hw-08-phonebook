@@ -12,6 +12,7 @@ const getNormalizedFilter = state => {
     return name.toLowerCase().includes(normalizedFilter);
   });
 
+
   return visibleTodos;
 };
 
@@ -21,11 +22,11 @@ const ContactList = () => {
 
   return (
     <ul>
-      {visibleFilter.map(({ id, name, phone }) => {
+      {visibleFilter.map(({ id, name, number }) => {
         return (
           <li key={id} className={s.item}>
             <span>
-              {name}: {phone}
+              {name}: {number}
             </span>
             <button
               type="button"
