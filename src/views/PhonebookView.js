@@ -11,7 +11,7 @@ const Phonebook = () => {
   const [unmount, setUnmount] = useState(false);
 
   useEffect(() => {
-    if (unmount) {
+    if (unmount === true) {
       return;
     }
 
