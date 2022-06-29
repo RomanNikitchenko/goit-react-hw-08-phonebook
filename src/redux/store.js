@@ -14,9 +14,6 @@ import phonebookReducer from 'redux/phonebook/phonebook-reducer';
 import authReducer from 'redux/auth/auth-slice';
 // import { authReducer } from './auth';
 
-
-
-
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
