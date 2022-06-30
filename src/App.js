@@ -25,7 +25,7 @@ const App = () => {
   return (
     <div>
       {isFetchingCurrentUser ? (
-        <h1>Загружаем...</h1>
+        <h1>Показываем React Skeleton</h1>
       ) : (
         <div>
           <AppBar />
