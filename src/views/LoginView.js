@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from '../redux/auth';
 
 const styles = {
@@ -15,6 +15,8 @@ const styles = {
 
 export default function LoginView() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const loginButton = useSelector(state => state.auth.loginButton);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,8 +34,10 @@ export default function LoginView() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authOperations.logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+    if (isLoggedIn) {
+      setEmail('');
+      setPassword('');
+    }
   };
 
   return (
@@ -61,7 +65,9 @@ export default function LoginView() {
           />
         </label>
 
-        <button type="submit">Войти</button>
+        <button type="submit">
+          {loginButton ? 'загружаем...' : 'Войти'}
+        </button>
       </form>
     </div>
   );

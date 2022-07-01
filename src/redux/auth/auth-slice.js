@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isFetchingCurrentUser: false,
+  loginButton: false
 };
 
 const authSlice = createSlice({
@@ -17,11 +18,23 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+
+    [authOperations.logIn.pending](state) {
+      state.isLoggedIn = false;
+      state.loginButton = true;
+    },
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.loginButton = false;
     },
+    [authOperations.logIn.rejected](state, action) {
+      // console.log(action.payload); //'Request failed with status code 400'
+      state.isLoggedIn = false;
+      state.loginButton = false;
+    },
+    
     [authOperations.logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
       state.token = null;

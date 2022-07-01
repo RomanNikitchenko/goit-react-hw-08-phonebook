@@ -37,18 +37,18 @@ const App = () => {
                 <HomeViev />
               </PublicRoute>
 
-              <PublicRoute path="/register" restricted>
+              <PublicRoute exact path="/register" restricted>
                 <RegisterView />
               </PublicRoute>
 
-              <PublicRoute path="/login" redirectTo="/phonebook" restricted>
+              <PublicRoute exact path="/login" redirectTo="/phonebook" restricted>
                 <LoginView />
               </PublicRoute>
               
-              <PrivateRoute path="/phonebook" redirectTo="/login">
+              <PrivateRoute exact path="/phonebook" redirectTo="/login">
                 <Phonebook />
               </PrivateRoute>
-
+              
             </Suspense>
           </Switch>
         </div>
