@@ -1,6 +1,6 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import AppBar from 'components/AppBar';
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from './redux/auth/auth-selectors';
@@ -25,35 +25,32 @@ const App = () => {
   return (
     <div>
       {isFetchingCurrentUser ? (
-        <h1>Показываем React Skeleton</h1>
+        <h1>Загружаем...</h1>
       ) : (
         <div>
           <AppBar />
-              <Suspense fallback={<p>Загружаем...</p>}>
-              <Switch>
 
-                <PublicRoute exact path="/">
-                  <HomeViev />
-                </PublicRoute>
+          <Switch>
+            <Suspense fallback={<p>Загружаем...</p>}>
 
-                <PublicRoute exact path="/register" restricted>
-                  <RegisterView />
-                </PublicRoute>
+              <PublicRoute exact path="/">
+                <HomeViev />
+              </PublicRoute>
 
-                <PublicRoute exact path="/login" redirectTo="/phonebook" restricted>
-                  <LoginView />
-                </PublicRoute>
-                
-                <PrivateRoute exact path="/phonebook" redirectTo="/login">
-                  <Phonebook />
-                </PrivateRoute>
-                  
-                <Route path="*">
-                  <HomeViev />
-                </Route>
+              <PublicRoute exact path="/register" restricted>
+                <RegisterView />
+              </PublicRoute>
 
-              </Switch>
+              <PublicRoute exact path="/login" redirectTo="/phonebook" restricted>
+                <LoginView />
+              </PublicRoute>
+              
+              <PrivateRoute exact path="/phonebook" redirectTo="/login">
+                <Phonebook />
+              </PrivateRoute>
+              
             </Suspense>
+          </Switch>
         </div>
       )}
     </div>
