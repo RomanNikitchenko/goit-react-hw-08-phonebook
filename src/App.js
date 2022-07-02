@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import AppBar from 'components/AppBar';
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from './redux/auth/auth-selectors';
@@ -28,36 +28,36 @@ const App = () => {
       {isFetchingCurrentUser ? (
         <h1>Показываем React Skeleton</h1>
       ) : (
-        <Router>
-          <div>
-            <AppBar />
-            <Suspense fallback={<p>Загружаем...</p>}>
-              <Switch>
+        // <Router>
+        <div>
+          <AppBar />
+          <Suspense fallback={<p>Загружаем...</p>}>
+            <Switch>
 
-                <PublicRoute exact path="/">
-                  <HomeViev />
-                </PublicRoute>
+              <PublicRoute exact path="/">
+                <HomeViev />
+              </PublicRoute>
 
-                <PublicRoute exact path="/register" restricted>
-                  <RegisterView />
-                </PublicRoute>
+              <PublicRoute exact path="/register" restricted>
+                <RegisterView />
+              </PublicRoute>
 
-                <PublicRoute exact path="/login" redirectTo="/phonebook" restricted>
-                  <LoginView />
-                </PublicRoute>
-                
-                <PrivateRoute exact path="/phonebook" redirectTo="/login">
-                  <Phonebook />
-                </PrivateRoute>
-                  
-                <Route path="*">
-                  <NoMatch />
-                </Route>
+              <PublicRoute exact path="/login" redirectTo="/phonebook" restricted>
+                <LoginView />
+              </PublicRoute>
 
-              </Switch>
-            </Suspense>
-          </div>
-        </Router>
+              <PrivateRoute exact path="/phonebook" redirectTo="/login">
+                <Phonebook />
+              </PrivateRoute>
+
+              <Route path="*">
+                <NoMatch />
+              </Route>
+
+            </Switch>
+          </Suspense>
+        </div>
+        // </Router>
       )}
     </div>
   );
