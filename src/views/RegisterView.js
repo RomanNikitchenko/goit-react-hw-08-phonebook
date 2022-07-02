@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import  authOperations  from 'redux/auth/auth-operations';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations } from '../redux/auth';
 
 const styles = {
   form: {
@@ -16,6 +15,8 @@ const styles = {
 
 export default function RegisterView() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const loginButton = useSelector(state => state.auth.loginButton);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,9 +37,11 @@ export default function RegisterView() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
+    if (isLoggedIn) {
+      setName('');
+      setEmail('');
+      setPassword('');
+    }
   };
 
   return (
@@ -71,7 +74,10 @@ export default function RegisterView() {
           />
         </label>
 
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">
+          {loginButton ? 'регистрирую...' : 'Зарегистрироваться'}
+        </button>
+
       </form>
     </div>
   );

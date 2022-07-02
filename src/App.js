@@ -1,6 +1,7 @@
+import React from "react";
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import AppBar from 'components/AppBar';
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from './redux/auth/auth-selectors';
@@ -27,9 +28,10 @@ const App = () => {
       {isFetchingCurrentUser ? (
         <h1>Показываем React Skeleton</h1>
       ) : (
-        <div>
-          <AppBar />
-              <Suspense fallback={<p>Загружаем...</p>}>
+        <Router>
+          <div>
+            <AppBar />
+            <Suspense fallback={<p>Загружаем...</p>}>
               <Switch>
 
                 <PublicRoute exact path="/">
@@ -49,15 +51,28 @@ const App = () => {
                 </PrivateRoute>
                   
                 <Route path="*">
-                  <HomeViev />
+                  <NoMatch />
                 </Route>
 
               </Switch>
             </Suspense>
-        </div>
+          </div>
+        </Router>
       )}
     </div>
   );
 };
+
+function NoMatch() {
+  let location = useLocation();
+
+  return (
+    <div>
+      <h3>
+        No match for <code>{location.pathname}</code>
+      </h3>
+    </div>
+  );
+}
 
 export default App;
