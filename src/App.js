@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import AppBar from 'components/AppBar';
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from './redux/auth/auth-selectors';
@@ -50,7 +50,7 @@ const App = () => {
               </PrivateRoute>
 
               <Route path="*">
-                <NoMatch />
+                <Redirect to="/" />
               </Route>
 
             </Switch>
@@ -60,17 +60,5 @@ const App = () => {
     </div>
   );
 };
-
-function NoMatch() {
-  let location = useLocation();
-
-  return (
-    <div>
-      <h3>
-        No match for <code>{location.pathname}</code>
-      </h3>
-    </div>
-  );
-}
 
 export default App;
