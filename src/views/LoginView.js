@@ -16,7 +16,7 @@ const styles = {
 export default function LoginView() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const loginButton = useSelector(state => state.auth.loginButton);
+  // const loginButton = useSelector(state => state.auth.loginButton);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -65,9 +65,7 @@ export default function LoginView() {
           />
         </label>
 
-        <button type="submit">
-          {loginButton ? 'загружаем...' : 'Войти'}
-        </button>
+        <button type="submit">Войти</button>
       </form>
     </div>
   );
