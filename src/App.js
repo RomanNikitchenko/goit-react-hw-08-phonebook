@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import AppBar from 'components/AppBar';
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from './redux/auth/auth-selectors';
@@ -28,7 +28,6 @@ const App = () => {
       {isFetchingCurrentUser ? (
         <h1>Показываем React Skeleton</h1>
       ) : (
-        // <Router>
         <div>
           <AppBar />
           <Suspense fallback={<p>Загружаем...</p>}>
@@ -57,7 +56,6 @@ const App = () => {
             </Switch>
           </Suspense>
         </div>
-        // </Router>
       )}
     </div>
   );
